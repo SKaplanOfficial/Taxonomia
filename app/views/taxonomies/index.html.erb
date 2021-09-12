@@ -1,20 +1,26 @@
-<h1>Home#index</h1>
-<h1>Enter an item below</h1>
-
-<br><br>
-
-<h2>Taxonomies</h2>
-<div class="row">
-    <ol>
-    <% @taxonomies.each do |taxonomy| %>
-        <a href='<%= taxonomy_path(taxonomy) %>'>
-            <li>
-                <%= taxonomy.title %>
-                <%= link_to 'hi', taxonomy, method: :delete, data: {confirm: 'Are you sure you want to delete ' + taxonomy.title + '?'}, class: 'btn btn-primary' %>
-            </li>
-        </a>
-    <% end %>
-    </ol>
+<div class="container" id="site-hero">
+    <h1>Taxonomia</h1>
+    <h2>Crowdsourced Classification.</h2>
 </div>
 
-<%= link_to "New Taxonomy", new_taxonomy_path %>
+<%= link_to "New Taxonomy", new_taxonomy_path, class: "btn btn-success", id: "new-taxonomy-btn" %>
+
+<div class="container" id="recent-taxonomies-container">
+    <h2>Recent Taxonomies</h2>
+    <div class="row">
+        <% @taxonomies.last(20).each do |taxonomy| %>
+            <a href='<%= taxonomy_path(taxonomy) %>' class="recent-taxonomy-link">
+                    <%= taxonomy.title %>
+            </a>
+        <% end %>
+    </div>
+</div>
+
+<div class="container navbar-fixed-bottom">
+    <div class="navbar ">
+        <ul class="nav" id="main-nav">
+            <li><a href="https://devpost.com/software/taxonomia">About</a></li>
+            <li><a href="https://github.com/SKaplanOfficial/Taxonomia">GitHub</a></li>
+        </ul>
+    </div>
+</div>

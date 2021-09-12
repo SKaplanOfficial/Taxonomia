@@ -1,24 +1,35 @@
-<%= form_with model: taxonomy do |form| %>
-  <div>
-    <%= form.label :title %><br>
-    <%= form.text_field :title %>
+<div class="container" id="new-taxonomy-container">
+  <%= form_with model: taxonomy do |form| %>
+    <div>
+      <%= form.label :title %><br>
+      <%= form.text_field :title %>
 
-    <% taxonomy.errors.full_messages_for(:title).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  </div>
+      <% taxonomy.errors.full_messages_for(:title).each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+    </div>
 
+    <div>
+      <%= form.label :description %><br>
+      <%= form.text_area :description %>
 
-  <!-- <div>
-    <%= form.label :body %><br>
-    <%= form.text_area :body %>
+      <% taxonomy.errors.full_messages_for(:description).each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+    </div>
 
-    <% taxonomy.errors.full_messages_for(:body).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  </div> -->
+    <div>
+      <%= form.label :author %><br>
+      <%= form.text_field :author, placeholder: "Anonymous" %>
 
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+      <% taxonomy.errors.full_messages_for(:author).each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+    </div>
+
+    <div>
+      <%= form.submit class: "btn btn-primary" %>
+      <%= link_to "Cancel", :back, class: "btn btn-danger" %>
+    </div>
+  <% end %>
+</div>

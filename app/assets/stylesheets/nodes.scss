@@ -1,3 +1,16 @@
 // Place all the styles related to the Nodes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.add-child-form-container {
+    display: none;
+}
+
+.node-buttons {
+    display: none;
+    margin-top: 1em;
+}
+
+.details-container {
+    display: none;
+}

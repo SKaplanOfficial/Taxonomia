@@ -3,17 +3,21 @@
         <strong><%= node.title %></strong>
     </p>
 
-    <p>
-        <%= node.body %>
-    </p>
+    <p onclick="ToggleDetails(<%= node.id %>)"><em>Description</em>: <%= node.body %></p>
 
-    <div class="div-base node-children-container">
-        <%= render partial: 'nodes/node', collection: node.nodes %>
+    <div class="details-container" id="details-container-<%= node.id %>">
+        <p><em>First Appearance</em>: <%= node.startDate %></p>
+        <p><em>Last Appearance</em>: <%= node.endDate %></p>
+        <p><em>Kingdom</em>: <%= node.kingdom %></p>
+        <p><em>Phylum</em>: <%= node.phylum %></p>
+        <p><em>Clades</em>: <%= node.clades %></p>
     </div>
 
-    <button class="btn btn-primary" onclick="ToggleEditNodeForm(<%= node.id %>)">✎ Edit Node</button>
-    <button class="btn btn-info">＋ Add Child Node</button>
-    <%= link_to 'Delete Node', node_path(node), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+    <div class="node-buttons" id="node-buttons-<%= node.id %>">
+        <button class="btn btn-primary" onclick="ToggleEditNodeForm(<%= node.id %>)">✎ Edit Node</button>
+        <button class="btn btn-info" onclick="ToggleAddChildForm(<%= node.id %>)">＋ Add Child Node</button>
+        <%= link_to 'Delete Node', node, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+    </div>
 
     <div class="edit-node-form-container" id="edit-node-form-container-<%= node.id %>">
         <%= form_with model: [node] do |form| %>
@@ -24,6 +28,26 @@
         <p>
             <%= form.label :body %><br>
             <%= form.text_area :body %>
+        </p>
+        <p>
+            <%= form.label "First Appearance" %><br>
+            <%= form.text_field :startDate %>
+        </p>
+        <p>
+            <%= form.label "Last Appearance" %><br>
+            <%= form.text_field :endDate %>
+        </p>
+        <p>
+            <%= form.label "Kingdom" %><br>
+            <%= form.text_field :kingdom %>
+        </p>
+        <p>
+            <%= form.label "Phylum" %><br>
+            <%= form.text_field :phylum %>
+        </p>
+        <p>
+            <%= form.label "Clades" %><br>
+            <%= form.text_field :clades %>
         </p>
         <%= form.hidden_field :taxonomy_id, :value => @taxonomy.id %>
         <p>
@@ -42,10 +66,34 @@
             <%= form.label :body %><br>
             <%= form.text_area :body %>
         </p>
+        <p>
+            <%= form.label "First Appearance" %><br>
+            <%= form.text_field :startDate %>
+        </p>
+        <p>
+            <%= form.label "Last Appearance" %><br>
+            <%= form.text_field :endDate %>
+        </p>
+        <p>
+            <%= form.label "Kingdom" %><br>
+            <%= form.text_field :kingdom %>
+        </p>
+        <p>
+            <%= form.label "Phylum" %><br>
+            <%= form.text_field :phylum %>
+        </p>
+        <p>
+            <%= form.label "Clades" %><br>
+            <%= form.text_field :clades %>
+        </p>
         <%= form.hidden_field :node_id, :value => node.id %>
         <p>
             <%= form.submit class: "btn btn-primary" %>
         </p>
         <% end %>
+    </div>
+
+    <div class="node-children-container" id="node-children-container-<%= node.id %>">
+        <%= render partial: 'nodes/node', collection: node.nodes %>
     </div>
 </div>

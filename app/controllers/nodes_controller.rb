@@ -16,7 +16,7 @@ before_action :find_expandable
         if @node.save
             redirect_back fallback_location: root_path, notice: 'Node added!'
         else
-            redirect_back fallback_location: root_path, notice: "Error while creating node..."
+            redirect_back fallback_location: root_path, notice: "Error while creating node!"
             logger.debug("----")
             logger.debug(@node.errors.full_messages)
         end
@@ -34,14 +34,13 @@ before_action :find_expandable
 
     def destroy
         @node = @expandable.nodes.find(params[:id])
-        @node.nodes.clear
         @node.destroy
         redirect_to expandable_path(@expandable.path)
     end
 
     private
         def node_params
-            params.require(:node).permit(:title, :body, :taxonomy_id, :node_id)
+            params.require(:node).permit(:title, :body, :taxonomy_id, :node_id, :startDate, :endDate, :kingdom, :phylum, :clades)
         end
 
         def find_expandable

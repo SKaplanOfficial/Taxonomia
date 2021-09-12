@@ -1,5 +1,21 @@
-<div class="navbar" id="main-navbar">
+<div class="navbar ">
+    <div class="navbar-inner">
+        <div class="container">
+            <ul class="nav" id="main-nav">
+                <li><a href="/">Home</a></li>
+                <li><a href="https://devpost.com/software/taxonomia">About</a></li>
+                <li><a href="https://github.com/SKaplanOfficial/Taxonomia">GitHub</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div id="taxonomy-header">
   <h1><%= @taxonomy.title %></h1>
+
+  <p class="taxonomy-desc"><em>Description</em>: <%= @taxonomy.description %></p>
+
+  <p class="taxonomy-author"><em>Created By</em>: <%= @taxonomy.author %></p>
 
   <%= link_to "⚙ Taxonomy Settings", edit_taxonomy_path(@taxonomy), class: "btn btn-primary" %>
   <button class="btn btn-info" onclick="ToggleTLNodeForm()">＋ Add Top-Level Node</button>
@@ -7,9 +23,7 @@
 </div>
 
 <% flash.each do |type, msg| %>
-  <div>
-    <%= msg %>
-  </div>
+    <%= content_tag :div, msg, class: 'alert alert-' + type %>
 <% end %>
 
 <div class="div-base" id="tl-node-form-container">
@@ -22,6 +36,26 @@
     <p>
       <%= form.label :body %><br>
       <%= form.text_area :body %>
+    </p>
+    <p>
+      <%= form.label "First Appearance" %><br>
+      <%= form.text_field :startDate %>
+    </p>
+    <p>
+      <%= form.label "Last Appearance" %><br>
+      <%= form.text_field :endDate %>
+    </p>
+    <p>
+      <%= form.label "Kingdom" %><br>
+      <%= form.text_field :kingdom %>
+    </p>
+    <p>
+      <%= form.label "Phylum" %><br>
+      <%= form.text_field :phylum %>
+    </p>
+    <p>
+      <%= form.label "Clades" %><br>
+      <%= form.text_field :clades %>
     </p>
     <%= form.hidden_field :taxonomy_id, :value => @taxonomy.id %>
     <p>

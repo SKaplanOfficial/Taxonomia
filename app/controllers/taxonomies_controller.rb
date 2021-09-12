@@ -44,6 +44,6 @@ class TaxonomiesController < ApplicationController
 
   private
     def taxonomy_params
-      params.require(:taxonomy).permit(:title)
+      params.require(:taxonomy).permit(:title, :description, :author)
     end
 end

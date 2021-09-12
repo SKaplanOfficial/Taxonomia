@@ -23,7 +23,7 @@ before_action :find_expandable
     end
 
     def update
-        @node = @expandable.nodes.find(params[:id])
+        @node = Node.find(params[:id])
     
         if @node.update(node_params)
             redirect_back fallback_location: root_path
@@ -32,15 +32,21 @@ before_action :find_expandable
         end
     end
 
+    def to_json
+        {
+          :nodes => expandable.nodes.collect { |n| n.to_json }
+        }
+    end
+
     def destroy
-        @node = @expandable.nodes.find(params[:id])
+        @node = Node.find(params[:id])
         @node.destroy
-        redirect_to expandable_path(@expandable.path)
+        redirect_back fallback_location: root_path, notice: 'Node added!'
     end
 
     private
         def node_params
-            params.require(:node).permit(:title, :body, :taxonomy_id, :node_id, :startDate, :endDate, :kingdom, :phylum, :clades)
+            params.fetch(:node, {}).permit(:title, :body, :taxonomy_id, :node_id, :startDate, :endDate, :kingdom, :phylum, :clades)
         end
 
         def find_expandable

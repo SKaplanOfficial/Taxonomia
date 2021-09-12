@@ -11,12 +11,16 @@
         <p><em>Kingdom</em>: <%= node.kingdom %></p>
         <p><em>Phylum</em>: <%= node.phylum %></p>
         <p><em>Clades</em>: <%= node.clades %></p>
+        <p><em>type</em>: <%= node.expandable_type %></p>
+        <p><em>eid</em>: <%= node.expandable_id %></p>
+        <p><em>nid</em>: <%= node.id %></p>
     </div>
 
     <div class="node-buttons" id="node-buttons-<%= node.id %>">
         <button class="btn btn-primary" onclick="ToggleEditNodeForm(<%= node.id %>)">✎ Edit Node</button>
         <button class="btn btn-info" onclick="ToggleAddChildForm(<%= node.id %>)">＋ Add Child Node</button>
-        <%= link_to 'Delete Node', node, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+        <% @node = node %>
+        <%= link_to 'Delete Node', node_path(node.id), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
     </div>
 
     <div class="edit-node-form-container" id="edit-node-form-container-<%= node.id %>">

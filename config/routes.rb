@@ -1,3 +1,17 @@
+# Rails.application.routes.draw do
+#   root 'home#index'
+
+#   resources :nodes
+# end
+
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  root 'taxonomies#index'
+
+  resources :taxonomies do
+    resources :nodes
+  end
+
+  resources :nodes do
+    resources :nodes
+  end
 end

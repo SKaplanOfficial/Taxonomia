@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  body: MyText
+  startDate: 2021-09-11
+  endDate: 2021-09-11
+  kingdom: MyString
+  phylum: MyString
+  clades: MyText
+  taxonomy: one
+  node: one
+
+two:
+  title: MyString
+  body: MyText
+  startDate: 2021-09-11
+  endDate: 2021-09-11
+  kingdom: MyString
+  phylum: MyString
+  clades: MyText
+  taxonomy: two
+  node: two

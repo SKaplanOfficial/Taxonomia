@@ -1,0 +1,20 @@
+<h1>Home#index</h1>
+<h1>Enter an item below</h1>
+
+<br><br>
+
+<h2>Taxonomies</h2>
+<div class="row">
+    <ol>
+    <% @taxonomies.each do |taxonomy| %>
+        <a href='<%= taxonomy_path(taxonomy) %>'>
+            <li>
+                <%= taxonomy.title %>
+                <%= link_to 'hi', taxonomy, method: :delete, data: {confirm: 'Are you sure you want to delete ' + taxonomy.title + '?'}, class: 'btn btn-primary' %>
+            </li>
+        </a>
+    <% end %>
+    </ol>
+</div>
+
+<%= link_to "New Taxonomy", new_taxonomy_path %>

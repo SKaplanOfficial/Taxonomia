@@ -1,0 +1,33 @@
+<div class="navbar" id="main-navbar">
+  <h1><%= @taxonomy.title %></h1>
+
+  <%= link_to "⚙ Taxonomy Settings", edit_taxonomy_path(@taxonomy), class: "btn btn-primary" %>
+  <button class="btn btn-info" onclick="ToggleTLNodeForm()">＋ Add Top-Level Node</button>
+  <%= link_to "× Delete", taxonomy_path(@taxonomy), method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-danger" %>
+</div>
+
+<% flash.each do |type, msg| %>
+  <div>
+    <%= msg %>
+  </div>
+<% end %>
+
+<div class="div-base" id="tl-node-form-container">
+  <h2>Add Node</h2>
+  <%= form_with model: [ @taxonomy, Node.new ] do |form| %>
+    <p>
+      <%= form.label :title %><br>
+      <%= form.text_field :title %>
+    </p>
+    <p>
+      <%= form.label :body %><br>
+      <%= form.text_area :body %>
+    </p>
+    <%= form.hidden_field :taxonomy_id, :value => @taxonomy.id %>
+    <p>
+      <%= form.submit class: "btn btn-primary" %>
+    </p>
+  <% end %>
+</div>
+
+<%= render partial: 'nodes/node', collection: @taxonomy.nodes %>

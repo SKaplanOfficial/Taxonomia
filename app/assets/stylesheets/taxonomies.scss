@@ -1,0 +1,49 @@
+// Place all the styles related to the Taxonomies controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+body {
+    background: #4e54c8;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #8f94fb, #4e54c8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.div-base {
+    width: calc(100% - 4rem);
+    margin: 2rem auto;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.1);
+    color: white;
+    border-radius: 5px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+
+    #node_title, #node_body {
+        background: rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 3px;
+        padding: 5px;
+        width: 100%;
+    }
+}
+
+.node-base {
+    width: calc(100% - 4rem);
+    margin: 2rem auto;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
+    border-radius: 5px;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+}
+
+#main-navbar {
+    @extend .div-base;
+}
+
+#tl-node-form-container {
+    display: none;
+}
+
+.edit-node-form-container {
+    display: none;
+}

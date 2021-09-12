@@ -1,0 +1,51 @@
+<div class="node-base">
+    <p>
+        <strong><%= node.title %></strong>
+    </p>
+
+    <p>
+        <%= node.body %>
+    </p>
+
+    <div class="div-base node-children-container">
+        <%= render partial: 'nodes/node', collection: node.nodes %>
+    </div>
+
+    <button class="btn btn-primary" onclick="ToggleEditNodeForm(<%= node.id %>)">✎ Edit Node</button>
+    <button class="btn btn-info">＋ Add Child Node</button>
+    <%= link_to 'Delete Node', node_path(node), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+
+    <div class="edit-node-form-container" id="edit-node-form-container-<%= node.id %>">
+        <%= form_with model: [node] do |form| %>
+        <p>
+            <%= form.label :title %><br>
+            <%= form.text_field :title %>
+        </p>
+        <p>
+            <%= form.label :body %><br>
+            <%= form.text_area :body %>
+        </p>
+        <%= form.hidden_field :taxonomy_id, :value => @taxonomy.id %>
+        <p>
+            <%= form.submit class: "btn btn-primary" %>
+        </p>
+        <% end %>
+    </div>
+
+    <div class="div-base add-child-form-container" id="add-child-form-container-<%= node.id %>">
+        <%= form_with model: [node, Node.new] do |form| %>
+        <p>
+            <%= form.label :title %><br>
+            <%= form.text_field :title %>
+        </p>
+        <p>
+            <%= form.label :body %><br>
+            <%= form.text_area :body %>
+        </p>
+        <%= form.hidden_field :node_id, :value => node.id %>
+        <p>
+            <%= form.submit class: "btn btn-primary" %>
+        </p>
+        <% end %>
+    </div>
+</div>
